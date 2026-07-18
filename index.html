@@ -152,7 +152,7 @@
 <style>
   /* ============================================================
      SETUP, replace these two values before going live:
-     1. Search for YOUR_WEB3FORMS_KEY → paste your free access key
+     1. Search for 06940ac3-f216-4f6c-85b5-695896523e15 → paste your free access key
         from https://web3forms.com (submissions arrive as emails).
      2. Search for 27827947084 → replace with your colleague's
         WhatsApp number (27 + number, no leading 0, no spaces).
@@ -465,7 +465,7 @@
         <h2>Get your free aircon quote</h2>
         <p class="sub">Firm pricing within 24 hours. No obligation.</p>
         <form id="quoteForm" novalidate>
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+          <input type="hidden" name="access_key" value="06940ac3-f216-4f6c-85b5-695896523e15" />
           <input type="hidden" name="subject" value="New quote request, easyaircon.co.za" />
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="row">
@@ -887,9 +887,9 @@
         status.textContent = "Got it, we'll be in touch within 24 hours with your quote.";
         status.className = 'form-status ok';
         form.reset();
-      } else { throw new Error(); }
-    } catch {
-      status.textContent = "That didn't send. Please try again, or tap the WhatsApp button below.";
+      } else { throw new Error(data.message || 'Submission rejected'); }
+    } catch (err) {
+      status.textContent = "That didn't send" + (err && err.message && err.message !== 'Failed to fetch' ? ' (' + err.message + ')' : '') + ". Please try again, or tap the WhatsApp button below.";
       status.className = 'form-status err';
     } finally {
       btn.disabled = false;
